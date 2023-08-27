@@ -10,40 +10,20 @@ import {
 } from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
-import ProductCard from "../component/CardItem";
-
-const dataProduct = [
-  {
-    id: "1",
-    title: "Kursus Laravel Pemula",
-    price: 299,
-  },
-  {
-    id: "2",
-    title: "Kursus Laravel Advanced",
-    price: 599,
-    discountPrice: 429,
-  },
-  {
-    id: "3",
-    title: "Kursus Laravel Project",
-    price: 499,
-    discountPrice: 329,
-  },
-];
+import ProductCard from "../../component/CardItem";
+import { useSelector } from "react-redux";
 export default function SectionCard() {
-  const [productCourse, setProductCourse] = useState([]);
   const [isLoaded, setIsLoaded] = useState(true);
+  const products = useSelector((state) => state.products);
 
   useEffect(() => {
-    setProductCourse(dataProduct);
     setTimeout(() => {
       setIsLoaded(false);
     }, 3000);
   }, []);
 
   return (
-    <Box p={4}>
+    <Box p={4} bg={"#EFF4FA"}>
       <Stack spacing={2} as={Container} maxW={"2xl"} textAlign={"center"}>
         <Heading
           fontSize={{ base: "2xl", sm: "4xl" }}
@@ -65,7 +45,7 @@ export default function SectionCard() {
           gridTemplateColumns="repeat(4, 1fr)"
           justify="center"
         >
-          {productCourse.map((item) => {
+          {products.map((item) => {
             if (isLoaded) {
               return (
                 <Box
@@ -97,6 +77,7 @@ export default function SectionCard() {
                   discountPrice={
                     item.discountPrice && item.price ? item.price : null
                   }
+                  image={item.img}
                 />
               );
             }

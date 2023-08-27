@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Box,
   Center,
@@ -11,17 +9,16 @@ import {
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
-const IMAGE = "https://aaronsaray.com/images/tag/laravel.jpg";
-
 ProductCard.propTypes = {
   text: PropTypes.string,
   title: PropTypes.string,
   price: PropTypes.number,
   discountPrice: PropTypes.number,
   url: PropTypes.string,
+  image: PropTypes.string
 };
 export default function ProductCard(props) {
-  const { text = "Course", title, price, discountPrice, url } = props;
+  const { text = "Course", title, price, discountPrice, url, image } = props;
 
   return (
     <Center py={12}>
@@ -55,7 +52,7 @@ export default function ProductCard(props) {
             height={120}
             width={158}
             objectFit={"cover"}
-            src={IMAGE}
+            src={image}
             alt="#"
           />
         </Box>

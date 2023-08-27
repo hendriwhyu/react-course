@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "title": "Kursus Laravel Pemula",
+    "price": 299,
+    "img": "https://aaronsaray.com/images/tag/laravel.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Kursus Laravel Advanced",
+    "price": 599,
+    "discountPrice": 429,
+    "img": "https://aaronsaray.com/images/tag/laravel.jpg"
+  },
+  {
+    "id": "3",
+    "title": "Kursus Laravel Project",
+    "price": 499,
+    "discountPrice": 329,
+    "img": "https://aaronsaray.com/images/tag/laravel.jpg"
+  }
+]

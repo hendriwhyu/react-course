@@ -9,6 +9,7 @@ import {
   Container,
 } from "@chakra-ui/react";
 import FeatureProduct from "./FeatureProduct";
+import { useDispatch, useSelector } from "react-redux";
 
 function Feature(prop, { ...rest }) {
   const { name, description } = prop;
@@ -20,17 +21,23 @@ function Feature(prop, { ...rest }) {
   );
 }
 const DetailSection = (prop) => {
+  const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
+  function handleAddProduct(product) {
+    dispatch(addProduct(product));
+  }
   const { title, text } = prop;
   return (
     <>
       <div className="bg-[#152A46]">
-        <Container maxW={"5xl"}>
+        <Container maxW={"7xl"}>
           <Stack
-            maxW={"5xl"}
+            maxW={"7xl"}
             padding={{ base: 0, sm: 2, xs: 4, md: 4 }}
             bgColor={"#152A46"}
             align={"center"}
-            spacing={{ base: 50, md: 100 }}
+            spacing={{ base: 50, md: 200 }}
             py={{ base: 10, md: 12 }}
             direction={{ base: "column", md: "row" }}
           >
