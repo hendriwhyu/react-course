@@ -8,6 +8,7 @@ import {
   Badge,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 ProductCard.propTypes = {
   text: PropTypes.string,
@@ -19,6 +20,7 @@ ProductCard.propTypes = {
 };
 export default function ProductCard(props) {
   const { text = "Course", title, price, discountPrice, url, image } = props;
+  const navigate = useNavigate();
 
   return (
     <Center py={12}>
@@ -34,8 +36,8 @@ export default function ProductCard(props) {
         pos={"relative"}
         zIndex={1}
         cursor={"pointer"}
-        onClick={url}
         _hover={{ bg: "#3B5998" }}
+        onClick={() => navigate(`/detail/${url}`)}
       >
         <Box
           rounded={"lg"}

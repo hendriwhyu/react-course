@@ -78,6 +78,7 @@ export default function SectionCard() {
                     item.discountPrice && item.price ? item.price : null
                   }
                   image={item.img}
+                  url={item.id}
                 />
               );
             }
