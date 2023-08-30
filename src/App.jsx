@@ -2,13 +2,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import DetailProduct from "./pages/DetailProduct";
 import CheckOut from "./pages/CheckOut";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { ProductsReducer } from "./redux/product/reducer";
-import dataProduct from "./data/data.json";
-import { addProduct } from "./redux/product/action";
+import store from "./redux/store";
 
-const store = createStore(ProductsReducer);
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,15 +25,6 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  dataProduct.forEach((product) => {
-    const existingProduct = store
-      .getState()
-      .products.find((p) => p.id === product.id);
-    if (!existingProduct) {
-      store.dispatch(addProduct(product));
-    }
-  });
-
   return (
     <Provider store={store}>
       <RouterProvider router={router} />

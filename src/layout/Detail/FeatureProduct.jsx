@@ -43,7 +43,7 @@ const FeatureProduct = () => {
           }}
         >
           <Box alignSelf="start">
-            <Card width={'xs'}>
+            <Card width={"xs"}>
               <CardHeader pb={"-5"}>
                 <Heading size="md">Detail Course</Heading>
               </CardHeader>
@@ -74,37 +74,6 @@ const FeatureProduct = () => {
               </CardBody>
               <Divider colorScheme="gray" />
               <CardFooter className="flex-col">
-                <Box className="flex" marginBottom={"5"}>
-                  <Stack
-                    width={{
-                      base: "100%",
-                      md: "40%",
-                    }}
-                    textAlign={"center"}
-                  >
-                    <Text
-                      textAlign={"left"}
-                      textDecor={"line-through"}
-                      textColor={"#6D7175"}
-                    >
-                      $ 2999
-                    </Text>
-                  </Stack>
-                  <Stack
-                    width={{
-                      base: "100%",
-                      md: "60%",
-                    }}
-                  >
-                    <Text
-                      textAlign={"right"}
-                      textColor={"#FF6A28"}
-                      fontWeight={"bold"}
-                    >
-                      $ 1500
-                    </Text>
-                  </Stack>
-                </Box>
                 <Button
                   width={"auto"}
                   colorScheme="facebook"

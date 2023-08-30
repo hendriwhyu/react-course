@@ -11,12 +11,21 @@ import {
 
 import { useEffect, useState } from "react";
 import ProductCard from "../../component/CardItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import dataProduct from "../../data/data.json";
+import { productSlice } from "../../redux/slice";
 export default function SectionCard() {
   const [isLoaded, setIsLoaded] = useState(true);
-  const products = useSelector((state) => state.products);
+  const { entities } = useSelector((state) => state.product);
+  const dispatch = useDispatch();
+  const fetchProduct = (product) => {
+    dispatch(productSlice.actions.productLoading());
+    dispatch(productSlice.actions.addProduct(product));
+  };
 
   useEffect(() => {
+    fetchProduct(dataProduct);
+
     setTimeout(() => {
       setIsLoaded(false);
     }, 3000);
@@ -45,7 +54,7 @@ export default function SectionCard() {
           gridTemplateColumns="repeat(4, 1fr)"
           justify="center"
         >
-          {products.map((item) => {
+          {entities.map((item) => {
             if (isLoaded) {
               return (
                 <Box

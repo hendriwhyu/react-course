@@ -9,7 +9,10 @@ import {
   Container,
 } from "@chakra-ui/react";
 import FeatureProduct from "./FeatureProduct";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { productSlice } from "../../redux/slice";
+import { useEffect } from "react";
 
 function Feature(prop, { ...rest }) {
   const { name, description } = prop;
@@ -20,14 +23,19 @@ function Feature(prop, { ...rest }) {
     </Stack>
   );
 }
-const DetailSection = (prop) => {
-  const products = useSelector((state) => state.products);
+const DetailSection = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
+  const { entity } = useSelector((state) => state.product);
+  console.log(dispatch(productSlice.actions.getProductById(id)));
 
-  function handleAddProduct(product) {
-    dispatch(addProduct(product));
-  }
-  const { title, text } = prop;
+  const fetchDetailProduct = async (productID) => {
+    await dispatch(productSlice.actions.getProductById(productID));
+  };
+
+  useEffect(() => {
+    fetchDetailProduct(id);
+  }, []);
   return (
     <>
       <div className="bg-[#152A46]">
@@ -48,11 +56,11 @@ const DetailSection = (prop) => {
                 fontSize={{ base: "xl", sm: "2xl", lg: "4xl" }}
               >
                 <Text as={"span"} position={"relative"} textColor={"white"}>
-                  {text}
+                  Course
                 </Text>
                 <br />
                 <Text as={"span"} color={"white"}>
-                  {title}
+                  {entity.title}
                 </Text>
               </Heading>
               <Stack spacing={2} direction="column">
@@ -103,9 +111,6 @@ const DetailSection = (prop) => {
                   align={"center"}
                   w={"100%"}
                   h={"100%"}
-                  src={
-                    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
-                  }
                 />
               </Box>
             </Flex>
